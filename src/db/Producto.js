@@ -6,8 +6,6 @@ const db = firebase.firestore();
 //importante!!
 //cuando sean consultas o metodos externos se debe de poner la palabra "export" antes del metodo a utilizar, asi porder usarlo en otro componente
 
-
-
 //importante !!!
 //cuando se hagan peticiones a la base de firebase, deben ser metodos asincrinos async await,
 //ya sea metodo GET, POST, UPDATE(PUT), DELETE
@@ -17,6 +15,8 @@ export const getAllProducts = async() =>{
     //cuando se usa async await se usa try catch, al usar las promesas ya no es necesario try catch, ejemplo de promesa then().catch() 
     try {
         let dataProducto = [];
+
+        //hacemos la peticon a la coleccion de la base
         const productos = await db.collection('producto').get();
 
         //verificamos que la coleccion tengan registros
