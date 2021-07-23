@@ -1,10 +1,13 @@
 import React from 'react'
+import { Button }from 'antd';
+import 'antd/dist/antd.css';
 
-const Boton = () => {
+const Boton = (props) => {
+    const { nombre, icon, type, shape } = props;
     return (
-        <div>
-            
-        </div>
+        <>
+            <Button type={type} shape={shape} icon={icon}>{nombre}</Button>
+        </>
     )
 }
 

@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 
 //importamos las consultas creados
 import { getAllProducts, }from '../db/Producto';
+import Boton from './Boton';
+import { PlusOutlined }from '@ant-design/icons'
+import styled from 'styled-components';
 
 const Productos = () => {
 
@@ -17,10 +20,15 @@ const Productos = () => {
     },[])//en corchetes vacios para que solo se ejecute una vez, ahi se le pueden pasar variables para verificar sus cambios
 
     return (
-        <div>
+        <Container>
+            <Boton type='primary' nombre='Agregar' icon={<PlusOutlined />} shape='round' />
             <h1>hola react</h1>
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    padding: 20px;
+`;
 
 export default Productos
