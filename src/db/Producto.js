@@ -38,3 +38,12 @@ export const getAllProducts = async() =>{
         return 'error al obtener datos';
     }
 }
+
+export const addProduct = async(data) =>{
+    try {
+        await db.collection('producto').add(data);
+        return 'Datos agreado correctamente'
+    } catch (error) {
+        return 'error al agregar nuevo producto'
+    }
+}
