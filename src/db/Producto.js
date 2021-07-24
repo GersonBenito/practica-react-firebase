@@ -15,9 +15,14 @@ export const getAllProducts = async() =>{
     //cuando se usa async await se usa try catch, al usar las promesas ya no es necesario try catch, ejemplo de promesa then().catch() 
     try {
         let dataProducto = [];
+        let index = 0;
 
         //hacemos la peticon a la coleccion de la base
         const productos = await db.collection('producto').get();
+
+        //para verificar cuantos registros existen en la coleccion usamos el .size que nos da firebase
+        console.log('numeros de registros en la coleccion', productos.size);
+        //cuando ya conozcamos el numero de registros, lo podemos retornar en un objeto 
 
         //verificamos que la coleccion tengan registros
         if(!productos.empty){
@@ -25,6 +30,7 @@ export const getAllProducts = async() =>{
             productos.forEach(element =>{
                 dataProducto.push({
                     id: element.id,
+                    index: index++,//index es opcional, solo para ver el numero de registro
                     ...element.data()//usamos la propagacion (...) para almacenar todos sus datos accediento con .data()
                 })
             })
