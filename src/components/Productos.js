@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //importamos las consultas creados
-import { getAllProducts, deleteProduct }from '../db/Producto';
+import { getAllProducts, deleteProduct, getProductById }from '../db/Producto';
 import Boton from './Boton';
 import { PlusOutlined, EditOutlined, DeleteOutlined, ExclamationCircleOutlined }from '@ant-design/icons'
 import styled from 'styled-components';
@@ -37,10 +37,15 @@ const Productos = () => {
     }
 
     //actualizar productos
-    const actualizarProducto = (record) =>{
+    const actualizarProducto = async(record) =>{
         setVisible(true);
         setAccion('edit');
         setDataEdit(record);
+
+        // probando la consulta getProductById a modo de ejemplo, esta consulta a mi parecer y en uso que le he dado
+        // es es funciones especificas del sistema
+        const datos = await getProductById(record.id);
+        console.log('datos de la consulata by id', datos);
     }
 
     //confirmacion de eliminacion
