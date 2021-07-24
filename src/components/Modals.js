@@ -6,7 +6,7 @@ import Boton from './Boton';
 import { addProduct }from '../db/Producto';
 
 const Modals = (props) => {
-    const { visible, closeModal } = props;
+    const { visible, closeModal, obtenerProductos } = props;
 
     const { TextArea } = Input;
 
@@ -19,7 +19,7 @@ const Modals = (props) => {
             description:'Producto fue agregado correctamente'
         })
         closeModal();
-
+        obtenerProductos();
        } catch (error) {
             notification['error']({
             message:'Error al guardar',
@@ -49,7 +49,7 @@ const Modals = (props) => {
                         <Input />
                     </Form.Item>
 
-                    <Form.Item label='descripcion' name='decripcion'>
+                    <Form.Item label='descripcion' name='descripcion'>
                         <TextArea rows={4} />
                     </Form.Item>
                     <Form.Item>

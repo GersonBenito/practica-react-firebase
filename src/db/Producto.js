@@ -39,11 +39,62 @@ export const getAllProducts = async() =>{
     }
 }
 
+//al hacer un post a la base de datos, le pasamos la data por parametro, la data se puede construir desde aqui o desde el frontend 
 export const addProduct = async(data) =>{
     try {
         await db.collection('producto').add(data);
         return 'Datos agreado correctamente'
     } catch (error) {
         return 'error al agregar nuevo producto'
+    }
+}
+
+//al hacer un update debemos de mandarle el id del registro y la data a moficar
+export const updateProduct = async(uId, data)=>{
+    try {
+
+        //en doc indicamo que vaya a buscar un documento con ese id en la coleccion especificado, y posteriormente actualizarlo
+        await db.collection('producto').doc(uId).update(data);
+        return 'datos actualizados correctamente';
+    } catch (error) {
+        return 'error al actualizar datos';
+    }
+}
+
+//para hacer un delete solo de debe de conocer el id del registro y mandarselo por parametro
+export const deleteProduct = async(uId) =>{
+    try {
+
+        //en doc como se vio en la consulta de arriba, estamos indicandole que vaya y busque un documente con el id especificado 
+        await db.collection('producto').doc(uId).delete();
+    } catch (error) {
+        
+    }
+}
+
+//asi es como hace un crud basico con firebase y react
+//existen consultas con referecias a otras colecciones eso ya es un poco mas complejo, la mejor forma segun lo que he usado es trabjarlo desde el frontend
+//y cuando se haga el get de esa coleccion si manejarlo desde el backend la referencia
+
+//las referencias segun lo que he estado viendo es como un camino mas corto para consultar a db de firebase, perfectamente puedes
+//guardar el id del registro al que quieres acceder y asi hacer una consulta por id
+
+//ejemplo de cosulta por id
+export const getProductById = async(uId) =>{
+    try {
+        let dataProducto = [];
+        const producto = await db.collection('producto').doc(uId).get();
+
+        //verificamos que el registro existe en la coleccion y asi no nos reviente la peticion
+        if(producto.exists){
+            dataProducto.push({
+                id: producto.id,
+                ...producto.data()
+            })
+        }
+
+        return dataProducto;
+    } catch (error) {
+        return 'errro al obtener producto';
     }
 }

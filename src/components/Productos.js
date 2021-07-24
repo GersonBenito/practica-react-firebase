@@ -54,6 +54,7 @@ const Productos = () => {
             title:'Acciones',
             dataIndex:'acciones',
             key:'acciones',
+            align:'center',
             render:(_, record) =>{
                 return(
                     <Space>
@@ -79,7 +80,7 @@ const Productos = () => {
         <Container>
             <Boton type='primary' nombre='Agregar' icon={<PlusOutlined />} shape='round' accion={openModal} />
             <Table columns={colums} dataSource={datos} />
-            <Modals visible={visible} closeModal={closeModal} />
+            <Modals visible={visible} closeModal={closeModal} obtenerProductos={obtenerProductos} />
         </Container>
     )
 }
