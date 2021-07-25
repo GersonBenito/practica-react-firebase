@@ -28,7 +28,7 @@ const Modals = (props) => {
     const onFinish = async(values) =>{
         console.log(values);
        try {
-        await addProduct(values); 
+        //await addProduct(values); 
         if(accion === 'edit'){
             await updateProduct(data.id, values);
             notification['success']({
